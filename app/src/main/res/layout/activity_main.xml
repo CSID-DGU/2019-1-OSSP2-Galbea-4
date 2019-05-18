@@ -4,156 +4,245 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation = "vertical"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/choose4"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="좋아요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="314dp" />
-
-    <Button
-        android:id="@+id/q_not"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTintMode="multiply"
-        android:text="질문하지 않기"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="55dp" />
-
-    <Button
-        android:id="@+id/q"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="질문 1"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="94dp" />
-
-    <Button
-        android:id="@+id/q2"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="질문 2"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="238dp" />
-
-    <Button
-        android:id="@+id/q3"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="질문 4"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="534dp" />
-
-    <Button
-        android:id="@+id/q4"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="질문 3"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="385dp" />
-
-    <Button
-        android:id="@+id/choose1"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="좋아요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="610dp" />
-
-    <Button
-        android:id="@+id/choose6"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="좋아요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="459dp" />
-
-    <Button
-        android:id="@+id/choose"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="좋아요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="166dp" />
-
-    <Button
-        android:id="@+id/choose2"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="싫어요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="610dp" />
-
-    <Button
-        android:id="@+id/choose7"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="싫어요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="459dp" />
-
-    <Button
-        android:id="@+id/choose5"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="싫어요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="314dp" />
-
-    <Button
-        android:id="@+id/choose3"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:text="싫어요"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="230dp"
-        tools:layout_editor_absoluteY="166dp" />
-
     <ScrollView
-        android:layout_width="11dp"
-        android:layout_height="715dp"
-        tools:layout_editor_absoluteX="395dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="11dp"
-        android:layout_height="8dp"
-        tools:layout_editor_absoluteX="395dp"
-        tools:layout_editor_absoluteY="546dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <android.support.constraint.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:barrierDirection="left" />
+        android:text="질문1"
+        android:id="@+id/btn1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="좋아요"
+                android:id="@+id/btn2"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn3"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문2"
+                android:id="@+id/btn4"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn5"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn6"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문3"
+                android:id="@+id/btn7"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn8"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn9"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문4"
+                android:id="@+id/btn10"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn11"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn12"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 5"
+                android:id="@+id/btn13"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn14"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn15"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문6"
+                android:id="@+id/btn16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn17"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn18"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문7"
+                android:id="@+id/btn19"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn20"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn21"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문8"
+                android:id="@+id/btn22"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn23"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn24"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 9"
+                android:id="@+id/btn25"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn26"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn27"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문10"
+                android:id="@+id/btn28"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="좋아요"
+                    android:id="@+id/btn29"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="싫어요"
+                    android:id="@+id/btn30"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="설문 완료!"
+                android:id="@+id/btn_next"/>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
