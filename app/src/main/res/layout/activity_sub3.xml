@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubActivity2">
+    tools:context=".SubActivity3">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,37 +16,63 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
 
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="저희가 추천하는 카페입니다~~!!"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/back"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="선호1"
-                android:id="@+id/prefer1"/>
+                android:id="@+id/btn_t1"
+                android:text="카페1"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_background"
+                android:textSize="15dp" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="선호2"
-                android:id="@+id/prefer2"/>
+                android:id="@+id/btn_t2"
+                android:background="@drawable/button_background"
+                android:text="카페2"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textSize="15dp" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="선호3"
-                android:id="@+id/prefer3"/>
-            <LinearLayout
+                android:background="@drawable/button_background"
+                android:id="@+id/btn_t3"
+                android:text="카페3"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textSize="15dp"
+                android:fontFamily="casual" />
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <Button
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="prev"
-                    android:id="@+id/btn_prev1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="확인"
-                    android:id="@+id/btn_enter"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_prev"
+                android:background ="@drawable/button_background"
+                android:text="돌아갈래요"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginRight="75dp"/>
+
+
         </LinearLayout>
     </ScrollView>
 
