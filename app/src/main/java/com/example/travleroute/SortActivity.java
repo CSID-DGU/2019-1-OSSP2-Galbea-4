@@ -29,9 +29,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_1.getText().toString());
                 startActivity(intent);
             }
         });
@@ -44,9 +45,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_2.getText().toString());
                 startActivity(intent);
             }
         });
@@ -59,9 +61,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_3.getText().toString());
                 startActivity(intent);
             }
         });
@@ -74,9 +77,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_4.getText().toString());
                 startActivity(intent);
             }
         });
@@ -88,9 +92,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_5.getText().toString());
                 startActivity(intent);
             }
         });
@@ -102,9 +107,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_6.getText().toString());
                 startActivity(intent);
             }
         });
@@ -116,9 +122,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_7.getText().toString());
                 startActivity(intent);
             }
         });
@@ -130,9 +137,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_8.getText().toString());
                 startActivity(intent);
             }
         });
@@ -144,9 +152,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_9.getText().toString());
                 startActivity(intent);
             }
         });
@@ -161,6 +170,7 @@ public class SortActivity extends AppCompatActivity {
                                 SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_10.getText().toString());
                 startActivity(intent);
             }
         });
@@ -172,9 +182,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_11.getText().toString());
                 startActivity(intent);
             }
         });
@@ -186,9 +197,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_12.getText().toString());
                 startActivity(intent);
             }
         });
@@ -200,9 +212,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_13.getText().toString());
                 startActivity(intent);
             }
         });
@@ -214,9 +227,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_14.getText().toString());
                 startActivity(intent);
             }
         });
@@ -228,9 +242,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_15.getText().toString());
                 startActivity(intent);
             }
         });
@@ -242,9 +257,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_16.getText().toString());
                 startActivity(intent);
             }
         });
@@ -256,9 +272,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_17.getText().toString());
                 startActivity(intent);
             }
         });
@@ -270,9 +287,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_18.getText().toString());
                 startActivity(intent);
             }
         });
@@ -284,9 +302,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_19.getText().toString());
                 startActivity(intent);
             }
         });
@@ -298,9 +317,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_20.getText().toString());
                 startActivity(intent);
             }
         });
@@ -312,9 +332,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_21.getText().toString());
                 startActivity(intent);
             }
         });
@@ -326,9 +347,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_22.getText().toString());
                 startActivity(intent);
             }
         });
@@ -340,9 +362,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_23.getText().toString());
                 startActivity(intent);
             }
         });
@@ -354,9 +377,10 @@ public class SortActivity extends AppCompatActivity {
                 //화면을 전환할때 사용하는 클래스 Intent
                 Intent intent =
                         new Intent(
-                                SortActivity.this, SubActivity2.class);
+                                SortActivity.this, SubActivity3.class);
 
                 //화면전환하기
+                intent.putExtra("category",bt_24.getText().toString());
                 startActivity(intent);
             }
         });

@@ -1,5 +1,8 @@
 package com.example.travelroute;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedInputStream;
@@ -11,24 +14,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GetApiClient {
+public class GetApiClient extends AppCompatActivity {
 
-    final static String openAPIURL = "http://api.openweathermap.org/data/2.5/weather";
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.client_api);
+    }
+    final static String openAPIURL = "https://us-central1-travelmaker-a02d4.cloudfunctions.net/fun";
 
-    public GetAPI getAPI(int lat,int lon){
-
+    public GetAPI getAPI(double lat,double lon, String category){
         GetAPI w = new GetAPI();
-
-        String urlString = openAPIURL + "?lat="+lat+"&lon="+lon;
-
-
-
+        String line;
+        BufferedReader bf;
+        String result = "";
+        String urlString = openAPIURL + "?lat="+lat+"&lon="+lon+"&category="+category;
         try {
-
             // call API by using HTTPURLConnection
-
             URL url = new URL(urlString);
-
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
 //            urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
@@ -38,9 +40,13 @@ public class GetApiClient {
 
 
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
+            bf = new BufferedReader(new InputStreamReader(url.openStream()));
             JSONObject json = new JSONObject(getStringFromInputStream(in));
 
+            while((line=bf.readLine())!=null){
+                result=result.concat(line);
+                //System.out.println(line);
+            }
 
 
             // parse JSON
@@ -51,24 +57,18 @@ public class GetApiClient {
 
             w.setLat(lat);
 
+            w.setCategory(category);
+
 
 
         }catch(MalformedURLException e){
-
             System.err.println("Malformed URL");
-
             e.printStackTrace();
-
             return null;
 
-
-
         }catch(JSONException e) {
-
             System.err.println("JSON parsing error");
-
             e.printStackTrace();
-
             return null;
 
         }catch(IOException e){
@@ -95,17 +95,26 @@ public class GetApiClient {
 
     private GetAPI parseJSON(JSONObject json) throws JSONException {
 
-        GetAPI w = new GetAPI();
+        GetAPI w1= new GetAPI();
+        GetAPI w2= new GetAPI();
+        GetAPI w3= new GetAPI();
 
-        w.setTemprature(json.getJSONObject("main").getInt("temp"));
+        w1.setLocation(json.getJSONObject("main").getString("temp"));
+        w1.setName(json.getString("name"));
+        w1.setScore(json.getJSONObject("main").getInt("temp"));
 
-        w.setCity(json.getString("name"));
+        w2.setLocation(json.getJSONObject("main").getString("temp"));
+        w2.setName(json.getString("name"));
+        w2.setScore(json.getJSONObject("main").getInt("temp"));
 
+        w3.setLocation(json.getJSONObject("main").getString("temp"));
+        w3.setName(json.getString("name"));
+        w3.setScore(json.getJSONObject("main").getInt("temp"));
         //w.setCloudy();
 
 
 
-        return w;
+        return w1;
 
     }
 
