@@ -26,15 +26,24 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-public class SubActivity3 extends AppCompatActivity{
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-    private Button button1;
-    private TextView txtResult;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import org.json.JSONArray;
+
+import org.json.JSONException;
+
+import org.json.JSONObject;
+
+
+public class SubActivity3 extends AppCompatActivity{
 
     private static final String TAG = "imagesearchexample";
     public static final int LOAD_SUCCESS = 101;
@@ -47,7 +56,12 @@ public class SubActivity3 extends AppCompatActivity{
     private String REQUEST_URL;
 
     private ProgressDialog progressDialog;
-    private TextView textviewJSONText;
+    private Button JSONText1;
+    private Button JSONText2;
+    private Button JSONText3;
+    private String[] Loca =  new String[2];
+    static String[][] arraysum = new String[3][6];
+
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
     Context context = this;
     TextView user_location;
@@ -60,26 +74,61 @@ public class SubActivity3 extends AppCompatActivity{
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
         String category2 = "&category="+category;
-        Button button = (Button)findViewById(R.id.button1);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-
-                fetchLocation();
-
-
-
+        fetchLocation();
 
         REQUEST_URL = SEARCH_URL + lat + lng + category2;
 
-        textviewJSONText = (TextView)findViewById(R.id.textview_main_jsontext);
-        textviewJSONText.setMovementMethod(new ScrollingMovementMethod());
+        JSONText1 = (Button)findViewById(R.id.textview_main_jsontext1);
+        JSONText2 = (Button)findViewById(R.id.textview_main_jsontext2);
+        JSONText3 = (Button)findViewById(R.id.textview_main_jsontext3);
 
-                progressDialog = new ProgressDialog( SubActivity3.this );
-                progressDialog.setMessage("Please wait.....");
-                progressDialog.show();
+        JSONText1.setMovementMethod(new ScrollingMovementMethod());
 
-                getJSON();
+        progressDialog = new ProgressDialog( SubActivity3.this );
+        progressDialog.setMessage("Please wait.....");
+        progressDialog.show();
+
+        getJSON();
+
+        JSONText1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =
+                        new Intent(SubActivity3.this, Mapping.class);
+
+                intent.putExtra("Current",Loca);
+                intent.putExtra("Data", arraysum[0]);
+
+                startActivity(intent);
+            }
+        });
+        JSONText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =
+                        new Intent(SubActivity3.this, Mapping.class);
+
+                intent.putExtra("Current",Loca);
+                intent.putExtra("Data", arraysum[1]);
+
+                startActivity(intent);
+            }
+        });
+        JSONText3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =
+                        new Intent(SubActivity3.this, Mapping.class);
+
+                intent.putExtra("Current",Loca);
+                intent.putExtra("Data", arraysum[2]);
+
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -142,7 +191,9 @@ public class SubActivity3 extends AppCompatActivity{
                                 Double latittude = location.getLatitude();
                                 Double longitude = location.getLongitude();
 
-                                textviewJSONText.setText("Latitude = "+latittude + "\nLongitude = " + longitude);
+                                Loca[0] =Double.toString(latittude);
+                                Loca[1] =Double.toString(longitude);
+
                                 lat="lat="+latittude;
                                 lng="&lng="+longitude;
                             }
@@ -187,15 +238,34 @@ public class SubActivity3 extends AppCompatActivity{
 
                         String jsonString = (String)msg.obj;
 
-                        mainactivity.textviewJSONText.setText(jsonString);
+                        try {
+                            JSONArray jarray = new JSONObject(jsonString).getJSONArray("recommend");
+                            for (int i = 0; i < 3; i++) {
+                                HashMap map = new HashMap<>();
+                                JSONObject jObject = jarray.getJSONObject(i);
+
+                                arraysum[i][0] = jObject.optString("name");
+                                arraysum[i][1] = jObject.optString("location");
+                                arraysum[i][2] = jObject.optString("score");
+                                arraysum[i][3] = jObject.optString("lat");
+                                arraysum[i][4] = jObject.optString("lng");
+                                arraysum[i][5] = jObject.optString("category");
+                            }
+                            String a1 = arraysum[0][0] + "   " + arraysum[0][2];
+                            String a2 = arraysum[1][0] + "   " + arraysum[1][2];
+                            String a3 = arraysum[2][0] + "   " + arraysum[2][2];
+
+                            mainactivity.JSONText1.setText(a1);
+                            mainactivity.JSONText2.setText(a2);
+                            mainactivity.JSONText3.setText(a3);
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
             }
         }
     }
-
-
-
 
     public void  getJSON() {
 
@@ -264,87 +334,3 @@ public class SubActivity3 extends AppCompatActivity{
     }
 
 }
-/*import android.content.Intent;
-import android.graphics.Color;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-public class SubActivity3 extends AppCompatActivity {
-
-    Button btn_prev;
-    Button btn_t1, btn_t2, btn_t3;
-    @Override
-
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub3);
-
-
-        btn_prev = (Button)findViewById(R.id.bt_prev);
-        btn_prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //이전 페이지로 화면전환
-                Intent intent = new Intent(SubActivity3.this, MainActivity.class);
-
-                startActivity( intent );
-            }
-        });
-
-        btn_t1 = (Button)findViewById(R.id.btn_t1);
-        btn_t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //다음페이지로 화면을 전환
-                //화면을 전환할때 사용하는 클래스 Intent
-                Intent intent =
-                        new Intent(
-                                SubActivity3.this, MapActivity.class);
-
-                //화면전환하기
-                startActivity(intent);
-            }
-        });
-
-        btn_t2 = (Button)findViewById(R.id.btn_t2);
-        btn_t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //다음페이지로 화면을 전환
-                //화면을 전환할때 사용하는 클래스 Intent
-                Intent intent =
-                        new Intent(
-                                SubActivity3.this, MapActivity.class);
-
-                //화면전환하기
-                startActivity(intent);
-            }
-        });
-
-        btn_t3 = (Button)findViewById(R.id.btn_t3);
-        btn_t3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //다음페이지로 화면을 전환
-                //화면을 전환할때 사용하는 클래스 Intent
-                Intent intent =
-                        new Intent(
-                                SubActivity3.this, MapActivity.class);
-
-                //화면전환하기
-                startActivity(intent);
-            }
-        });
-    }
-}*/

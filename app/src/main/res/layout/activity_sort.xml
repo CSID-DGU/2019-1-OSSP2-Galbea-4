@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".SortActivity">
     <RelativeLayout tools:context="com.example.travelroute.SortActivity" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -17,9 +18,11 @@
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_marginBottom="30dp"
         android:layout_gravity="center"
         android:id="@+id/question"
         android:padding="10dp"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="22dp"
         android:text="다음 카테고리중 하나를 선택하세요♥"/>
         <LinearLayout
@@ -31,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="15dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/bt_1"
             android:background="@drawable/button_background"
             android:text="배달"/>
@@ -72,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/bt_5"
                 android:background="@drawable/button_background"
                 android:text="생활의달인"/>
@@ -113,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/bt_9"
                 android:background="@drawable/button_background"
                 android:text="일식"/>
@@ -154,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/bt_13"
                 android:background="@drawable/button_background"
                 android:text="횟집"/>
@@ -194,7 +197,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/bt_17"
                 android:background="@drawable/button_background"
                 android:text="패스트푸드"/>
@@ -234,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/bt_21"
                 android:background="@drawable/button_background"
                 android:text="면요리"/>
