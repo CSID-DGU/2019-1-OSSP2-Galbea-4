@@ -28,6 +28,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
+import com.example.travelroute.Mapping;
+import com.example.travelroute.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 
 public class SubActivity3 extends AppCompatActivity{
@@ -54,7 +57,9 @@ public class SubActivity3 extends AppCompatActivity{
     private String lng = "&lng=126.9857421";
 
     private String REQUEST_URL;
+    private String category2;
 
+    private TextView textView;
     private ProgressDialog progressDialog;
     private Button JSONText1;
     private Button JSONText2;
@@ -73,9 +78,10 @@ public class SubActivity3 extends AppCompatActivity{
 
         Intent intent = getIntent();
         String category = intent.getStringExtra("category");
-        String category2 = "&category="+category;
+        category2 = "&category="+category;
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        textView = (TextView)findViewById(R.id.question);
 
         fetchLocation();
 
@@ -85,13 +91,13 @@ public class SubActivity3 extends AppCompatActivity{
         JSONText2 = (Button)findViewById(R.id.textview_main_jsontext2);
         JSONText3 = (Button)findViewById(R.id.textview_main_jsontext3);
 
+
         JSONText1.setMovementMethod(new ScrollingMovementMethod());
 
         progressDialog = new ProgressDialog( SubActivity3.this );
         progressDialog.setMessage("Please wait.....");
         progressDialog.show();
 
-        getJSON();
 
         JSONText1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,9 +199,10 @@ public class SubActivity3 extends AppCompatActivity{
 
                                 Loca[0] =Double.toString(latittude);
                                 Loca[1] =Double.toString(longitude);
+                                lat = "lat=" + latittude;
+                                lng = "&lng=" + longitude;
 
-                                lat="lat="+latittude;
-                                lng="&lng="+longitude;
+                                getJSON();
                             }
                         }
                     });
@@ -270,12 +277,11 @@ public class SubActivity3 extends AppCompatActivity{
     public void  getJSON() {
 
         Thread thread = new Thread(new Runnable() {
-
             public void run() {
-
                 String result;
 
-                try {
+                    try {
+                    REQUEST_URL = SEARCH_URL + lat + lng + category2;
 
                     Log.d(TAG, REQUEST_URL);
                     URL url = new URL(REQUEST_URL);

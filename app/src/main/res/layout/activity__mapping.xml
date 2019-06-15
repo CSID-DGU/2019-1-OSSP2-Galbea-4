@@ -10,7 +10,7 @@
         android:id="@+id/linearLayoutTmap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical" />
 
 
     <RelativeLayout
@@ -112,6 +112,24 @@
         android:scaleType="centerInside"
         android:src="@drawable/selector_btn"
         android:visibility="invisible" />
+
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/info"
+        android:layout_alignTop="@+id/my_location"
+        android:layout_alignBottom="@+id/my_location"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/selector"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:text="돌아가기"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/info"

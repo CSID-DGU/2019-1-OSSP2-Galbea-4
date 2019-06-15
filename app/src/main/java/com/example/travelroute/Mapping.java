@@ -1,18 +1,25 @@
 package com.example.travelroute;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,7 +28,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.travelroute.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.skt.Tmap.TMapGpsManager;
@@ -35,11 +47,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL;
 
 public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocationChangedCallback {
 
@@ -84,14 +98,18 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
     String end_x = "126.92432158129688", end_y = "37.55279861528311";
     ////////////////////
 
+
+    //돌아가기 버튼
+    Button back;
+
+    //firebase.db
+    FirebaseFirestore db;
+
+
     @Override
     public void onLocationChange(final Location location) {
 
         current_location = location;
-
-        // TODO: 실제 테스트 에서는 두줄 지우기
-        current_location.setLatitude(Double.parseDouble(start_y));
-        current_location.setLongitude(Double.parseDouble(start_x));
 
         Log.d("current location", location.getLatitude() + ", " + location.getLongitude());
 
@@ -310,22 +328,22 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
                 public void onErrorResponse(VolleyError error) {
                     Log.e("TAG2", error.getMessage(), error);
 
-                    String body;
-                    //get status code here
-                    String statusCode = String.valueOf(error.networkResponse.statusCode);
-                    //get response body and parse with appropriate encoding
-                    if (error.networkResponse.data != null) {
-                        try {
-                            body = new String(error.networkResponse.data, "UTF-8");
-
-                            Log.e("statusCode", statusCode);
-                            Log.e("body", body);
-
-
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    String body;
+//                    //get status code here
+//                    String statusCode = String.valueOf(error.networkResponse.statusCode);
+//                    //get response body and parse with appropriate encoding
+//                    if (error.networkResponse.data != null) {
+//                        try {
+//                            body = new String(error.networkResponse.data, "UTF-8");
+//
+//                            Log.e("statusCode", statusCode);
+//                            Log.e("body", body);
+//
+//
+//                        } catch (UnsupportedEncodingException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
 
                 }
             }) {
@@ -376,6 +394,11 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
 
 
     @Override
+    public void onBackPressed() {
+        showAlert();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__mapping);
@@ -392,6 +415,10 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
         end_y = Data[3];
 
 
+        //firebase 초기화.
+//        FirebaseApp.initializeApp(getApplicationContext());
+        db = FirebaseFirestore.getInstance();
+
         // TODO: 실제 테스트 에서는 풀기!!
 //        end_y = getIntent().getStringExtra("lat");
 //        end_x = getIntent().getStringExtra("lon");
@@ -404,6 +431,7 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
         pred_time = findViewById(R.id.pred_time);
         pred_distance = findViewById(R.id.pred_distance);
         target = findViewById(R.id.target);
+        back = findViewById(R.id.back);
 
         target.setText(name);
 
@@ -515,6 +543,19 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
                 .setDeniedMessage("퍼미션 미허용시 설정에서 수동으로 허용해주셔야 이용가능합니다.")
                 .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
                 .check();
+
+
+        //돌아가기 버튼 설정.
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //onBackPressed 와 같은 이벤트를 방생시킵니다.
+                showAlert();
+
+            }
+        });
 
     }
 
@@ -651,6 +692,107 @@ public class Mapping extends AppCompatActivity implements TMapGpsManager.onLocat
             tMapView.setCenterPoint(location.getLongitude(), location.getLatitude(), true);
             tMapView.setZoomLevel(zoom);
         }
+
+    }
+
+
+    //다이얼로그를 띄워서 평점을 등록합니다.
+    private void showAlert() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Mapping.this);
+        builder.setCancelable(false);
+        builder.setTitle(name + "의 평점을 입력해주세요!");
+        builder.setMessage("평점은 익명으로 등록됩니다. 정확한 정보를 위해 평점을 입력해주세요.");
+        final EditText inputValue = new EditText(Mapping.this);
+        inputValue.setPadding(60, 50, 20, 30);
+        inputValue.setBackgroundColor(Color.parseColor("#00000000"));
+        inputValue.setHint("0~100 사이 점수를 적어주세요.");
+        inputValue.setTextColor(Color.RED);
+        inputValue.setTextSize(15);
+        inputValue.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_VARIATION_NORMAL);
+        builder.setView(inputValue);
+        builder.setPositiveButton("평점등록", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if (inputValue.getText().length() == 0) {
+                    Toast.makeText(Mapping.this, "평점을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    final int value = Integer.valueOf(inputValue.getText().toString());
+                    if (value > 100 || value < 0) {
+                        Toast.makeText(Mapping.this, "평점은 0점에서 100점까지 입력하실 수 있습니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //등록 가능.
+                        //현재 등록되어 있는 문서 수를 체크한다.
+
+
+                        db.collection("guest")
+                                .whereGreaterThanOrEqualTo("score", 0) //점수가 0 점보다 같거나 큰 데이터. 즉 모든 데이터/
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+
+                                            //총 문서개수 가져오기.
+                                            QuerySnapshot get_document = task.getResult();
+                                            //총 문서 개수.
+                                            int totalCount = get_document.size();
+                                            Log.d("tag", String.valueOf(totalCount));
+
+                                            //데이터 추가.
+                                            Map<String, Object> score = new HashMap<>();
+                                            score.put("name", name);
+                                            score.put("location", data);
+                                            score.put("score", value);
+
+
+                                            db.collection("guest").document("guest" + (totalCount + 1))
+                                                    .set(score)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Log.d("tag", "DocumentSnapshot successfully written!");
+                                                            Toast.makeText(Mapping.this, "평점이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                                                            finish();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.w("tag", "Error writing document", e);
+                                                            Toast.makeText(Mapping.this, "평점이 등록되지 않았습니다,", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+
+                                        } else {
+                                            Log.d("tag", "Error getting documents: ", task.getException());
+                                        }
+                                    }
+                                });
+
+                    }
+
+                }
+
+
+            }
+        });
+        builder.setNegativeButton("나가기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+
 
     }
 
