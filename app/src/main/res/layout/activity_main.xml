@@ -22,7 +22,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginBottom="30dp"
         android:textSize="50dp"
-        android:text="Travel Route"/>
+        android:text="I♥Junggu"/>
 
 
     <Button
