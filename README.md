@@ -50,7 +50,7 @@ $ scrapy crawl diningCodeCrawler
 $ npm install firebase-admin
 $ node "Your_Project_Folder_Name"
 </pre>
-    [Reference Site](https://medium.com/@impaachu/how-to-upload-data-to-firebase-firestore-cloud-database-63543d7b34c5)
+    [Reference_Site](https://medium.com/@impaachu/how-to-upload-data-to-firebase-firestore-cloud-database-63543d7b34c5)
 
 * functions.zip - Firebase의 functions파일
 
