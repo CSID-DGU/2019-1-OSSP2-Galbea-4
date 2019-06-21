@@ -48,9 +48,9 @@ $ scrapy crawl diningCodeCrawler
 자신의 firebase URL로 값 변경 및 service key설정
 <pre>
 $ npm install firebase-admin
-$ node <Your_Project_Folder_Name>
+$ node "Your_Project_Folder_Name"
 </pre>
-[detail](https://medium.com/@impaachu/how-to-upload-data-to-firebase-firestore-cloud-database-63543d7b34c5)
+    [Reference Site](https://medium.com/@impaachu/how-to-upload-data-to-firebase-firestore-cloud-database-63543d7b34c5)
 
 * functions.zip - Firebase의 functions파일
 
