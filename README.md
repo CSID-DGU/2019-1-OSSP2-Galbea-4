@@ -8,7 +8,7 @@ Scrapy, Selenium을 이용한 DB 생성 및 크롤링
 
 Tmap Api를 이용한 추천 장소까지 거리 및 네이게이션 생성
 
-###팀원
+### 팀원
 
 <pre>
 안중환 2015112158 (an004005@gmail.com)   - 서버 및 DB 구현
